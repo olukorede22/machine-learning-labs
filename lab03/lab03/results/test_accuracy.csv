@@ -1,0 +1,4 @@
+model,train_loss,val_acc,test_loss,test_acc,epoch_seconds
+MLP,0.2690,0.8798,0.3437,0.8765,9.8109
+CNN,0.2545,0.8986,0.2846,0.8986,16.6871
+Attention,0.3679,0.8604,0.3934,0.8595,65658.2124
