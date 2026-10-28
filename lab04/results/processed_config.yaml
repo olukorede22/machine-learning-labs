@@ -1,0 +1,93 @@
+config:
+  seed: 42
+  output_dir: results
+  dataset:
+    name: adult
+    version: 2
+    expected_rows: 48842
+    expected_cols: 15
+  split:
+    test_size: 0.3
+  cleaning:
+    missing_token: '?'
+    clip_lower_quantile: 0.01
+    clip_upper_quantile: 0.99
+    drop_train_duplicates: true
+  baseline:
+    model: LogisticRegression
+    max_iter: 2000
+  label_audit:
+    n_random_rows: 50
+synthetic_data: false
+environment:
+  python: 3.14.0
+  numpy: 2.5.4
+  pandas: 3.1.0
+  scikit-learn: 1.9.1
+  joblib: 1.6.0
+  pyyaml: 6.0.3
+raw_data_sha256_csv_view: 8f970e20c9991979ec0a9ccb65ce97543d678709a2c6f8ef23f7fb32f40adddc
+processed_sha256:
+  processed_train.csv: 740a11c1eda9b9ee1a2801875b50961afa8643e4303b109bcd4838b4d4bf40e8
+  processed_test.csv: 8ca183f456d028bffa64f8442520f4b88cf1d98afff5c4bde6633877553704f7
+  combined: 2ffbd59d8acef565b682ffcd8ba7d3ab72bd4aa73cea3a884df79832dc383ed4
+cleaning:
+  fill_values_from_train:
+    workclass: Private
+    education: HS-grad
+    marital-status: Married-civ-spouse
+    occupation: Prof-specialty
+    relationship: Husband
+    race: White
+    sex: Male
+    native-country: United-States
+    age: 37.0
+    fnlwgt: 178282.0
+    education-num: 10.0
+    capital-gain: 0.0
+    capital-loss: 0.0
+    hours-per-week: 40.0
+  clip_bounds_from_train:
+    age:
+    - 17.0
+    - 74.0
+    fnlwgt:
+    - 27036.4
+    - 509629.0
+    education-num:
+    - 3.0
+    - 16.0
+    capital-gain:
+    - 0.0
+    - 15024.0
+    capital-loss:
+    - 0.0
+    - 1980.0
+    hours-per-week:
+    - 8.0
+    - 80.0
+  train_rows_before_dedup: 34189
+  train_rows_after_dedup: 34161
+  test_rows: 14653
+  exact_duplicates_dropped_from_train: 28
+baseline_results:
+- features: without derived features
+  accuracy: 0.8542
+  f1 (>50K): 0.661
+- features: with capital_net + hours_per_age
+  accuracy: 0.8577
+  f1 (>50K): 0.6694
+label_audit:
+  exact_duplicate_rows: 52
+  all_14_features:
+    duplicate_groups: 54
+    rows_in_duplicate_groups: 111
+    conflicting_groups: 5
+    rows_in_conflicting_groups: 10
+  13_features_without_fnlwgt:
+    duplicate_groups: 3771
+    rows_in_duplicate_groups: 11174
+    conflicting_groups: 1029
+    rows_in_conflicting_groups: 3873
+  sample_rows: 50
+  sample_rows_with_automated_issues: 0

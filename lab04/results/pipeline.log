@@ -1,0 +1,17 @@
+[ingest] rows=48842 columns=15
+[ingest] raw data sha256 (csv view) = 8f970e20c9991979ec0a9ccb65ce97543d678709a2c6f8ef23f7fb32f40adddc
+[validate] 35 checks, 0 with violations (see validation_report.md)
+[split] train=34189 test=14653 | >50K share train=0.2393 test=0.2393
+[clean] fill values (from train): {'workclass': 'Private', 'education': 'HS-grad', 'marital-status': 'Married-civ-spouse', 'occupation': 'Prof-specialty', 'relationship': 'Husband', 'race': 'White', 'sex': 'Male', 'native-country': 'United-States', 'age': 37.0, 'fnlwgt': 178282.0, 'education-num': 10.0, 'capital-gain': 0.0, 'capital-loss': 0.0, 'hours-per-week': 40.0}
+[clean] clip bounds (from train): {'age': (17.0, 74.0), 'fnlwgt': (27036.4, 509629.0), 'education-num': (3.0, 16.0), 'capital-gain': (0.0, 15024.0), 'capital-loss': (0.0, 1980.0), 'hours-per-week': (8.0, 80.0)}
+[clean] train: imputed {'workclass': 1926, 'occupation': 1936, 'native-country': 590}, clipped {'age': 302, 'fnlwgt': 683, 'education-num': 242, 'capital-gain': 255, 'capital-loss': 340, 'hours-per-week': 537}
+[clean] test:  imputed {'workclass': 873, 'occupation': 873, 'native-country': 267}, clipped {'age': 143, 'fnlwgt': 272, 'education-num': 88, 'capital-gain': 136, 'capital-loss': 151, 'hours-per-week': 236} (train statistics only)
+[clean] exact duplicates in raw train: 24; after imputation+clipping: 28; dropped from train: 28; test rows kept: 14653
+[clean] saved results/preprocessor.joblib
+[baseline] without derived features           accuracy=0.8542 F1=0.6610
+[baseline] with capital_net + hours_per_age   accuracy=0.8577 F1=0.6694
+[audit] exact dups=52; conflicting groups (14 feats)=5, (13 feats)=1029; sample rows with issues=0/50
+[hash] processed_train.csv sha256 = 740a11c1eda9b9ee1a2801875b50961afa8643e4303b109bcd4838b4d4bf40e8
+[hash] processed_test.csv  sha256 = 8ca183f456d028bffa64f8442520f4b88cf1d98afff5c4bde6633877553704f7
+[hash] combined            sha256 = 2ffbd59d8acef565b682ffcd8ba7d3ab72bd4aa73cea3a884df79832dc383ed4
+[done] outputs in C:\Users\korede\Desktop\lab4\lab04\results ; data card in C:\Users\korede\Desktop\lab4\lab04\data_card.md

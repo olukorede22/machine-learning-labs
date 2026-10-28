@@ -1,0 +1,25 @@
+# Lab 4 pipeline configuration. Everything that affects the output lives here.
+seed: 42
+output_dir: results
+
+dataset:
+  name: adult
+  version: 2
+  expected_rows: 48842
+  expected_cols: 15
+
+split:
+  test_size: 0.30          # 70/30, stratified on income, done BEFORE any cleaning
+
+cleaning:
+  missing_token: "?"       # '?' (and real NaN) are treated as missing
+  clip_lower_quantile: 0.01   # clip bounds are learned on TRAIN only
+  clip_upper_quantile: 0.99
+  drop_train_duplicates: true # exact duplicates, train only; test is never touched
+
+baseline:
+  model: LogisticRegression
+  max_iter: 2000
+
+label_audit:
+  n_random_rows: 50
