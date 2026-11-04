@@ -1,0 +1,1 @@
+slowdown (engine / torch) = 828.1x ; max |loss_engine - loss_torch| over 50 epochs = 1.110e-15

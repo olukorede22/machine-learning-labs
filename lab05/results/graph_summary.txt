@@ -1,0 +1,1 @@
+((a*b + c)**2).relu() for scalars -> {'nodes': 7, 'edges': 6, 'ops': {'leaf': 3, '*': 1, '+': 1, '**2': 1, 'relu': 1}}

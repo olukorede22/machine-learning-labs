@@ -1,0 +1,7 @@
+case,seed,forward_value,max|engine-torch|,max|engine-numerical|,max|torch-numerical|,pass(<1e-6)
+((a*b + c)**2).relu().sum()  [required],42,9.3424598463,0.000e+00,1.071e-09,1.071e-09,True
+(a*b - c).relu().sum()  [relu active and inactive],42,3.1098327968,0.000e+00,3.043e-10,3.043e-10,True
+(a*a + a*b + a).sum()  [a reused: gradient accumulation],42,6.7633070306,4.441e-16,5.451e-10,5.451e-10,True
+((a*b + c)**2).relu().sum()  [required],7,16.0509288677,0.000e+00,1.338e-09,1.338e-09,True
+(a*b - c).relu().sum()  [relu active and inactive],7,9.2323678597,0.000e+00,1.021e-09,1.021e-09,True
+(a*a + a*b + a).sum()  [a reused: gradient accumulation],7,4.2034946518,2.220e-16,4.440e-10,4.440e-10,True
