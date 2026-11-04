@@ -1,0 +1,3 @@
+implementation,epochs,median_train_s,ms_per_epoch,final_loss,test_accuracy
+"Value engine (pure Python, scalar)",50,25.6588,513.176,0.267778,0.9000
+"PyTorch (vectorised, float64)",50,0.0310,0.620,0.267778,0.9000

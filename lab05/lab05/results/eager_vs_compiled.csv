@@ -1,0 +1,11 @@
+workload,mode,status,first_call_ms,median_ms,speedup_vs_eager,max_abs_diff,threads
+tiny MLP 2-8-1 (batch 1000),eager,ok,,0.0614,1.00,0,4
+tiny MLP 2-8-1 (batch 1000),jit.trace,ok,13.3,0.0553,1.11,0.00e+00,4
+tiny MLP 2-8-1 (batch 1000),torch.compile,ok,1287.3,0.0697,0.88,0.00e+00,4
+wide MLP 512-512-512-10 (batch 256),eager,ok,,1.4937,1.00,0,4
+wide MLP 512-512-512-10 (batch 256),jit.trace,ok,32.1,1.5651,0.95,0.00e+00,4
+wide MLP 512-512-512-10 (batch 256),torch.compile,ok,2.7,1.5783,0.95,0.00e+00,4
+elementwise chain (1M floats),eager,ok,,5.3536,1.00,0,4
+elementwise chain (1M floats),jit.trace,ok,88.4,5.3798,1.00,0.00e+00,4
+elementwise chain (1M floats),torch.compile,"UNSUPPORTED BackendCompilerFailed: backend='inductor' raised:
+RuntimeError: Failed to import C:\Users\Lenovo\AppData\Local\Temp\torchin",,,,,

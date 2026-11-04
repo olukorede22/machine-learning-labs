@@ -1,0 +1,10 @@
+operation,input,is_contiguous,median_ms,slowdown_vs_contiguous
+x*2+1,contiguous 2048x2048,True,4.299,1.00
+x*2+1,x.t() view (non-contiguous),False,4.042,0.94
+x*2+1,x.t().contiguous() then op (copy included),False,13.258,3.08
+half*2+1,contiguous 2048x1024,True,2.120,1.00
+half*2+1,"x[:, ::2] strided slice 2048x1024",False,2.790,1.32
+sum(dim=0),contiguous,True,4.495,1.00
+sum(dim=0),x.t() view (non-contiguous),False,1.305,0.29
+matmul @ w,contiguous x,True,2.467,1.00
+matmul @ w,x.t() view (BLAS handles transpose),False,4.300,1.74

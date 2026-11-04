@@ -1,0 +1,8 @@
+tensor,shape,dtype,stride,is_contiguous,device
+input x (1000x2),"(1000, 2)",torch.float32,"(2, 1)",True,cpu
+Linear0.weight,"(8, 2)",torch.float32,"(2, 1)",True,cpu
+Linear0.weight.t(),"(2, 8)",torch.float32,"(1, 2)",False,cpu
+output,"(1000, 1)",torch.float32,"(1, 1)",True,cpu
+big (2048x2048),"(2048, 2048)",torch.float32,"(2048, 1)",True,cpu
+big.t() (view),"(2048, 2048)",torch.float32,"(1, 2048)",False,cpu
+"big[:, ::2] (strided)","(2048, 1024)",torch.float32,"(2048, 2)",False,cpu
