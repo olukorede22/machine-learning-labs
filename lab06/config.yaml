@@ -1,0 +1,44 @@
+# Lab 6: the single YAML config that drives every run (task 1).
+# Studies (tasks 3-7) copy this config and override a few keys.
+seed: 42
+device: auto              # auto | cpu | cuda
+output_dir: results
+checkpoint_dir: checkpoints
+
+data:
+  root: data
+  val_size: 5000          # 60k official train -> 55k train + 5k validation (as in Lab 3)
+  mean: 0.2860
+  std: 0.3530
+  num_workers: 0
+  subset: null            # e.g. [6000, 1000, 1000] for a quick test (set by --quick)
+
+model:
+  name: cnn               # mlp | cnn | attention  <- set this to your BEST model from Lab 3
+
+train:
+  epochs: 5
+  batch_size: 128
+  accumulation_steps: 1   # >1 = gradient accumulation
+  optimizer: adam         # adam | sgd
+  lr: 0.001
+  momentum: 0.9           # used by sgd
+  weight_decay: 0.0
+  scheduler: none         # none | step | cosine | plateau
+  scheduler_params:
+    step: {step_size: 3, gamma: 0.5}
+    cosine: {T_max: null}           # null -> number of epochs
+    plateau: {factor: 0.5, patience: 1}
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment: lab06-train
+
+studies:
+  workers: [0, 1, 2, 4, 8]
+  batch_sizes: [32, 64, 128, 256, 512]
+  batch_epochs: 5
+  scheduler_epochs: 10
+  sgd_lr: 0.05
+  accum: {micro_batch: 64, steps: 4, direct_batch: 256, epochs: 5}
+  resume: {total_epochs: 6, interrupt_at: 3}

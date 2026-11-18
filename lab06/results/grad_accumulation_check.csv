@@ -1,0 +1,4 @@
+run,final_train_loss,final_val_acc,test_acc,peak_mem_mb
+batch 256 (direct),0.2936,0.8918,0.8888,631.337
+batch 64 x accumulate 4,0.2938,0.8918,0.8884,633.7987
+batch 64 (no accumulation),0.2386,0.9044,0.9008,634.0813
